@@ -7,7 +7,7 @@ on:
   watch:
     types: started
   schedule:
-    - cron: 1,30 0,1,2 * * *
+    - cron: 30 0,1,2 * * *
 
 jobs:
   ClockIn:
@@ -24,8 +24,11 @@ jobs:
         run: |
           pip3 install requests
           pip3 install ddddocr
-      - name: Random wait
-        uses: m3y/random-wait-action@v1
+      - name: Wait
+        uses: 1itachi/sleep-random@v1.0.0
+        with:
+          minutes: '20'
+          random: 'true'
       - name: Clock In
         env:
           ACCOUNT: ${{ secrets.ACCOUNT }}
